@@ -1,0 +1,8 @@
+{
+  // Static site only: no Worker script, Cloudflare serves the files in ./public
+  "name": "gen-story",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public"
+  }
+}

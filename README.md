@@ -1,6 +1,6 @@
 # gen-story
 
-The story page and the one pager of gen-system, as a static site for Cloudflare Pages.
+The story page and the one pager of gen-system, as a static site on Cloudflare.
 
 | Path | Page |
 |---|---|
@@ -14,27 +14,30 @@ Fonts and link to GitHub.
 
 ## Deploy
 
-Pick one.
+The site deploys as a Cloudflare Worker with static assets and no Worker script, the same setup as
+the learning plan site. `wrangler.jsonc` names it `gen-story` and points `assets.directory` at
+`./public`.
 
 **From the command line.** Run this in this folder:
 
 ```bash
-npx wrangler pages deploy
+npx wrangler deploy
 ```
 
-`wrangler.toml` names the project `gen-story` and points it at `public/`. The first run asks you to
-log in and creates the project.
+The first run asks you to log in and creates the Worker.
 
 **From GitHub.** Push this folder as its own repository. In the Cloudflare dashboard, open
-Workers & Pages, create a Pages project, connect the repository, leave the build command empty and
-set the build output directory to `public`.
+Workers & Pages, create an application, import the repository, and keep the deploy command
+`npx wrangler deploy`. Leave the build command empty.
 
-**By upload.** In the dashboard, create a Pages project with Direct Upload and drop the `public`
-folder in.
+Do not use `wrangler pages deploy`. This folder is set up for a Worker, not a Pages project.
+
+Cloudflare serves `/short.html` at `/short` and redirects the old path, so every link in the pages
+still works.
 
 ## Custom domain
 
-In the Pages project, open Custom domains and add your domain. Cloudflare creates the DNS record
+In the Worker, open Settings, then Domains & Routes, and add your custom domain. Cloudflare creates the DNS record
 when the domain uses Cloudflare DNS.
 
 The `hreflang` links in the pages are root relative (`/`, `/vi/`, `/short.html`, `/vi/short.html`),
