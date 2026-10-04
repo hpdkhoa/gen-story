@@ -34,13 +34,3 @@ Do not use `wrangler pages deploy`. This folder is set up for a Worker, not a Pa
 
 Cloudflare serves `/short.html` at `/short` and redirects the old path, so every link in the pages
 still works.
-
-## Custom domain
-
-In the Worker, open Settings, then Domains & Routes, and add your custom domain. Cloudflare creates the DNS record
-when the domain uses Cloudflare DNS.
-
-The `hreflang` links in the pages are root relative (`/`, `/vi/`, `/short.html`, `/vi/short.html`),
-so they work on any domain.
-
-`public/_headers` sets three security headers on every response.
